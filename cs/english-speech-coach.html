@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>English Native — local-first accent coaching | Naresh Valavala</title>
+<meta name="description" content="Case study: English Native, an AI project by Naresh Valavala.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://nareshvalavala.github.io/cs/english-speech-coach.html">
+<style>@font-face{font-family:'Instrument Sans';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/is400.woff2) format('woff2')}@font-face{font-family:'Instrument Sans';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/is500.woff2) format('woff2')}@font-face{font-family:'Instrument Sans';font-weight:600;font-style:normal;font-display:swap;src:url(fonts/is600.woff2) format('woff2')}@font-face{font-family:'Instrument Sans';font-weight:700;font-style:normal;font-display:swap;src:url(fonts/is700.woff2) format('woff2')}
+html{background:#070f1d}body{margin:0;background:#070f1d;color:#cdd7ec;font-family:'Instrument Sans',system-ui,sans-serif}
+.back{display:block;max-width:none;margin:0;padding:18px clamp(24px,5vw,96px) 0}.back a{color:#ff9b3d;font-size:14px;text-decoration:none}.back a:hover{text-decoration:underline}
+.csx{--bg:#070f1d;--surface:#0c1830;--line:rgba(160,190,255,.16);--text:#cdd7ec;--text-muted:#9aa9c4;--text-faint:#7f93b8;--accent:#ff9b3d;color:var(--text);font-family:'Instrument Sans','Figtree',ui-sans-serif,sans-serif;line-height:1.5;border-radius:10px;overflow:hidden;background:#070f1d;border:1px solid var(--line)}
+.csx *{box-sizing:border-box}
+.csx a{color:var(--accent)}
+.csx .btn{display:inline-block;text-decoration:none}
+.csx[data-k="english-speech-coach"] *{box-sizing: border-box;}
+.csx[data-k="english-speech-coach"]{margin: 0; background: var(--bg); color: var(--text); font-family: 'Figtree', ui-sans-serif, sans-serif; line-height: 1.5;}
+.csx[data-k="english-speech-coach"] .mono{font-family: 'JetBrains Mono', ui-monospace, monospace;}
+.csx[data-k="english-speech-coach"] .wrap{max-width: 1080px; margin: 0 auto; padding: 0 32px;}
+.csx[data-k="english-speech-coach"] a{color: var(--accent);}
+.csx[data-k="english-speech-coach"] .tag{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 9px; border-radius: 999px;}
+.csx[data-k="english-speech-coach"] .tag-accent{background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);}
+.csx[data-k="english-speech-coach"] .tag-neutral{background: var(--surface); color: var(--text-muted);}
+.csx[data-k="english-speech-coach"] .tag-outline{border: 1px solid var(--line); color: var(--text-muted);}
+.csx[data-k="english-speech-coach"] .panel{position: relative; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); padding: 22px 24px;}
+.csx[data-k="english-speech-coach"] .corner{position: absolute; width: 10px; height: 10px; border-color: color-mix(in srgb, var(--accent) 50%, transparent);}
+.csx[data-k="english-speech-coach"] .corner.tl{top: 6px; left: 6px; border-top: 2px solid; border-left: 2px solid;}
+.csx[data-k="english-speech-coach"] .corner.tr{top: 6px; right: 6px; border-top: 2px solid; border-right: 2px solid;}
+.csx[data-k="english-speech-coach"] .corner.bl{bottom: 6px; left: 6px; border-bottom: 2px solid; border-left: 2px solid;}
+.csx[data-k="english-speech-coach"] .corner.br{bottom: 6px; right: 6px; border-bottom: 2px solid; border-right: 2px solid;}
+.csx[data-k="english-speech-coach"] .kicker{font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent);}
+.csx[data-k="english-speech-coach"] .divider-grid{display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;}
+.csx[data-k="english-speech-coach"] .divider-grid > div{background: var(--bg); padding: 16px 18px;}
+.csx[data-k="english-speech-coach"] h1,.csx[data-k="english-speech-coach"] h2,.csx[data-k="english-speech-coach"] h3{font-weight: 700; letter-spacing: -0.02em; margin: 0;}
+.csx[data-k="english-speech-coach"] .btn{display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500;}
+.csx[data-k="english-speech-coach"] .btn-primary{background: var(--accent); color: var(--bg);}
+.csx[data-k="english-speech-coach"] .btn-secondary{border: 1px solid var(--line); color: var(--text);}
+.csx[data-k="english-speech-coach"] .imgph{aspect-ratio: 21/9; border-radius: 10px; border: 1px dashed var(--line); display: flex; align-items: center; justify-content: center; color: var(--text-faint); font-size: 12px; text-align: center; padding: 16px;}
+.csx[data-k="english-speech-coach"] .theme-toggle{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer;}
+.csx[data-k="english-speech-coach"] .diagram-row{display:flex; align-items:center; flex-wrap:wrap; gap:8px;}
+.csx[data-k="english-speech-coach"] .diagram-box{border:1px solid var(--line); background: var(--bg); border-radius:8px; padding:7px 11px; font-size:12.5px; font-weight:600; white-space:nowrap;}
+.csx[data-k="english-speech-coach"] .diagram-box.accent{border-color: var(--accent); color: var(--accent);}
+.csx[data-k="english-speech-coach"] .diagram-arrow{color: var(--text-faint); font-size:14px;}
+.csx[data-k="english-speech-coach"] .diagram-boundary{border:1px dashed var(--line); border-radius:12px; padding:22px 20px 18px; position:relative;}
+.csx[data-k="english-speech-coach"] .diagram-boundary .blabel{position:absolute; top:-10px; left:16px; background:var(--surface); padding:0 8px; font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint);}
+.csx[data-k="english-speech-coach"] .diagram-lane{display:flex; align-items:center; gap:12px; margin: 11px 0; flex-wrap:wrap;}
+.csx[data-k="english-speech-coach"] .diagram-lane .lane-tag{font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-faint); width:110px; flex-shrink:0;}
+.csx[data-k="english-speech-coach"] .bars{display:flex; align-items:flex-end; gap:6px; height:56px;}
+.csx[data-k="english-speech-coach"] .bars .bar{width:16px; background: var(--accent); border-radius:2px 2px 0 0; opacity:0.75;}
+.csx[data-k="english-speech-coach"] .waveform{display:flex; align-items:center; gap:2px; height:26px;}
+.csx[data-k="english-speech-coach"] .waveform .wbar{width:3px; background: var(--accent); border-radius:2px; opacity:0.65;}
+.csx[data-k="english-speech-coach"] .flow-svg{width:100%; height:auto; display:block;}
+.csx[data-k="english-speech-coach"] .flow-edge{fill:none; stroke:var(--line); stroke-width:1.5;}
+.csx[data-k="english-speech-coach"] .flow-edge.dashed{stroke-dasharray:4 5; opacity:0.7;}
+.csx[data-k="english-speech-coach"] .flow-boundary{fill:none; stroke:var(--line); stroke-width:1; stroke-dasharray:3 4;}
+.csx[data-k="english-speech-coach"] .flow-blabel-bg{fill:var(--surface);}
+.csx[data-k="english-speech-coach"] .flow-node-rect{fill:var(--bg); stroke:var(--line); stroke-width:1;}
+.csx[data-k="english-speech-coach"] .flow-node-rect.accent{stroke:var(--accent);}
+.csx[data-k="english-speech-coach"] .flow-node-rect.dashed{stroke-dasharray:3 3;}
+.csx[data-k="english-speech-coach"] .flow-dot{fill:var(--accent);}
+.csx[data-k="english-speech-coach"] .flow-dot.muted{fill:var(--text-faint); opacity:0.6;}
+.csx[data-k="english-speech-coach"] .flow-label{font-family:'Figtree', ui-sans-serif, sans-serif; font-size:12px; fill:var(--text); font-weight:600;}
+.csx[data-k="english-speech-coach"] .flow-label.muted{fill:var(--text-faint); font-weight:500;}
+.csx[data-k="english-speech-coach"] .flow-arrowhead{fill:var(--text-faint);}
+.csx[data-k="english-speech-coach"] .flow-caption{font-family:'JetBrains Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; fill:var(--text-faint);}
+.csx[data-k="stillwater"] *{box-sizing: border-box;}
+.csx[data-k="stillwater"]{margin: 0; background: var(--bg); color: var(--text); font-family: 'Figtree', ui-sans-serif, sans-serif; line-height: 1.5;}
+.csx[data-k="stillwater"] .mono{font-family: 'JetBrains Mono', ui-monospace, monospace;}
+.csx[data-k="stillwater"] .wrap{max-width: 1080px; margin: 0 auto; padding: 0 32px;}
+.csx[data-k="stillwater"] a{color: var(--accent);}
+.csx[data-k="stillwater"] .tag{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 9px; border-radius: 999px;}
+.csx[data-k="stillwater"] .tag-accent{background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);}
+.csx[data-k="stillwater"] .tag-neutral{background: var(--surface); color: var(--text-muted);}
+.csx[data-k="stillwater"] .tag-outline{border: 1px solid var(--line); color: var(--text-muted);}
+.csx[data-k="stillwater"] .panel{position: relative; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); padding: 22px 24px;}
+.csx[data-k="stillwater"] .corner{position: absolute; width: 10px; height: 10px; border-color: color-mix(in srgb, var(--accent) 50%, transparent);}
+.csx[data-k="stillwater"] .corner.tl{top: 6px; left: 6px; border-top: 2px solid; border-left: 2px solid;}
+.csx[data-k="stillwater"] .corner.tr{top: 6px; right: 6px; border-top: 2px solid; border-right: 2px solid;}
+.csx[data-k="stillwater"] .corner.bl{bottom: 6px; left: 6px; border-bottom: 2px solid; border-left: 2px solid;}
+.csx[data-k="stillwater"] .corner.br{bottom: 6px; right: 6px; border-bottom: 2px solid; border-right: 2px solid;}
+.csx[data-k="stillwater"] .kicker{font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent);}
+.csx[data-k="stillwater"] .divider-grid{display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;}
+.csx[data-k="stillwater"] .divider-grid > div{background: var(--bg); padding: 16px 18px;}
+.csx[data-k="stillwater"] h1,.csx[data-k="stillwater"] h2,.csx[data-k="stillwater"] h3{font-weight: 700; letter-spacing: -0.02em; margin: 0;}
+.csx[data-k="stillwater"] .btn{display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500;}
+.csx[data-k="stillwater"] .btn-primary{background: var(--accent); color: var(--bg);}
+.csx[data-k="stillwater"] .btn-secondary{border: 1px solid var(--line); color: var(--text);}
+.csx[data-k="stillwater"] .theme-toggle{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer;}
+.csx[data-k="stillwater"] .flow-svg{width:100%; height:auto; display:block;}
+.csx[data-k="stillwater"] .flow-edge{fill:none; stroke:var(--line); stroke-width:1.5;}
+.csx[data-k="stillwater"] .flow-edge.dashed{stroke-dasharray:4 5; opacity:0.7;}
+.csx[data-k="stillwater"] .flow-node-rect{fill:var(--bg); stroke:var(--line); stroke-width:1;}
+.csx[data-k="stillwater"] .flow-node-rect.accent{stroke:var(--accent);}
+.csx[data-k="stillwater"] .flow-node-rect.dashed{stroke-dasharray:3 3;}
+.csx[data-k="stillwater"] .flow-dot{fill:var(--accent);}
+.csx[data-k="stillwater"] .flow-dot.muted{fill:var(--text-faint); opacity:0.6;}
+.csx[data-k="stillwater"] .flow-label{font-family:'Figtree', ui-sans-serif, sans-serif; font-size:12px; fill:var(--text); font-weight:600;}
+.csx[data-k="stillwater"] .flow-label.muted{fill:var(--text-faint); font-weight:500;}
+.csx[data-k="stillwater"] .flow-arrowhead{fill:var(--text-faint);}
+.csx[data-k="stillwater"] .flow-caption{font-family:'JetBrains Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; fill:var(--text-faint);}
+.csx[data-k="candidatepulse"] *{box-sizing: border-box;}
+.csx[data-k="candidatepulse"]{margin: 0; background: var(--bg); color: var(--text); font-family: 'Figtree', ui-sans-serif, sans-serif; line-height: 1.5;}
+.csx[data-k="candidatepulse"] .mono{font-family: 'JetBrains Mono', ui-monospace, monospace;}
+.csx[data-k="candidatepulse"] .wrap{max-width: 1080px; margin: 0 auto; padding: 0 32px;}
+.csx[data-k="candidatepulse"] a{color: var(--accent);}
+.csx[data-k="candidatepulse"] .tag{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 9px; border-radius: 999px;}
+.csx[data-k="candidatepulse"] .tag-accent{background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);}
+.csx[data-k="candidatepulse"] .tag-neutral{background: var(--surface); color: var(--text-muted);}
+.csx[data-k="candidatepulse"] .tag-outline{border: 1px solid var(--line); color: var(--text-muted);}
+.csx[data-k="candidatepulse"] .panel{position: relative; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); padding: 22px 24px;}
+.csx[data-k="candidatepulse"] .corner{position: absolute; width: 10px; height: 10px; border-color: color-mix(in srgb, var(--accent) 50%, transparent);}
+.csx[data-k="candidatepulse"] .corner.tl{top: 6px; left: 6px; border-top: 2px solid; border-left: 2px solid;}
+.csx[data-k="candidatepulse"] .corner.tr{top: 6px; right: 6px; border-top: 2px solid; border-right: 2px solid;}
+.csx[data-k="candidatepulse"] .corner.bl{bottom: 6px; left: 6px; border-bottom: 2px solid; border-left: 2px solid;}
+.csx[data-k="candidatepulse"] .corner.br{bottom: 6px; right: 6px; border-bottom: 2px solid; border-right: 2px solid;}
+.csx[data-k="candidatepulse"] .kicker{font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent);}
+.csx[data-k="candidatepulse"] .divider-grid{display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;}
+.csx[data-k="candidatepulse"] .divider-grid > div{background: var(--bg); padding: 16px 18px;}
+.csx[data-k="candidatepulse"] h1,.csx[data-k="candidatepulse"] h2,.csx[data-k="candidatepulse"] h3{font-weight: 700; letter-spacing: -0.02em; margin: 0;}
+.csx[data-k="candidatepulse"] .btn{display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500;}
+.csx[data-k="candidatepulse"] .btn-primary{background: var(--accent); color: var(--bg);}
+.csx[data-k="candidatepulse"] .btn-secondary{border: 1px solid var(--line); color: var(--text);}
+.csx[data-k="candidatepulse"] .theme-toggle{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer;}
+.csx[data-k="candidatepulse"] .flow-svg{width:100%; height:auto; display:block;}
+.csx[data-k="candidatepulse"] .flow-edge{fill:none; stroke:var(--line); stroke-width:1.5;}
+.csx[data-k="candidatepulse"] .flow-edge.dashed{stroke-dasharray:4 5; opacity:0.7;}
+.csx[data-k="candidatepulse"] .flow-node-rect{fill:var(--bg); stroke:var(--line); stroke-width:1;}
+.csx[data-k="candidatepulse"] .flow-node-rect.accent{stroke:var(--accent);}
+.csx[data-k="candidatepulse"] .flow-node-rect.dashed{stroke-dasharray:3 3;}
+.csx[data-k="candidatepulse"] .flow-dot{fill:var(--accent);}
+.csx[data-k="candidatepulse"] .flow-dot.muted{fill:var(--text-faint); opacity:0.6;}
+.csx[data-k="candidatepulse"] .flow-label{font-family:'Figtree', ui-sans-serif, sans-serif; font-size:12px; fill:var(--text); font-weight:600;}
+.csx[data-k="candidatepulse"] .flow-label.muted{fill:var(--text-faint); font-weight:500;}
+.csx[data-k="candidatepulse"] .flow-arrowhead{fill:var(--text-faint);}
+.csx[data-k="candidatepulse"] .flow-caption{font-family:'JetBrains Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.1em; fill:var(--text-faint);}
+.csx[data-k="candidatepulse"] .flow-lane-label{font-family:'JetBrains Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em; fill:var(--text-faint);}
+.csx[data-k="agent-mirror"] *{box-sizing: border-box;}
+.csx[data-k="agent-mirror"]{margin: 0; background: var(--bg); color: var(--text); font-family: 'Figtree', ui-sans-serif, sans-serif; line-height: 1.5;}
+.csx[data-k="agent-mirror"] .mono{font-family: 'JetBrains Mono', ui-monospace, monospace;}
+.csx[data-k="agent-mirror"] .wrap{max-width: 1080px; margin: 0 auto; padding: 0 32px;}
+.csx[data-k="agent-mirror"] a{color: var(--accent);}
+.csx[data-k="agent-mirror"] .tag{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; padding: 4px 9px; border-radius: 999px;}
+.csx[data-k="agent-mirror"] .tag-accent{background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);}
+.csx[data-k="agent-mirror"] .tag-neutral{background: var(--surface); color: var(--text-muted);}
+.csx[data-k="agent-mirror"] .tag-outline{border: 1px solid var(--line); color: var(--text-muted);}
+.csx[data-k="agent-mirror"] .panel{position: relative; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); padding: 22px 24px;}
+.csx[data-k="agent-mirror"] .corner{position: absolute; width: 10px; height: 10px; border-color: color-mix(in srgb, var(--accent) 50%, transparent);}
+.csx[data-k="agent-mirror"] .corner.tl{top: 6px; left: 6px; border-top: 2px solid; border-left: 2px solid;}
+.csx[data-k="agent-mirror"] .corner.tr{top: 6px; right: 6px; border-top: 2px solid; border-right: 2px solid;}
+.csx[data-k="agent-mirror"] .corner.bl{bottom: 6px; left: 6px; border-bottom: 2px solid; border-left: 2px solid;}
+.csx[data-k="agent-mirror"] .corner.br{bottom: 6px; right: 6px; border-bottom: 2px solid; border-right: 2px solid;}
+.csx[data-k="agent-mirror"] .kicker{font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent);}
+.csx[data-k="agent-mirror"] .divider-grid{display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;}
+.csx[data-k="agent-mirror"] .divider-grid > div{background: var(--bg); padding: 16px 18px;}
+.csx[data-k="agent-mirror"] h1,.csx[data-k="agent-mirror"] h2,.csx[data-k="agent-mirror"] h3{font-weight: 700; letter-spacing: -0.02em; margin: 0;}
+.csx[data-k="agent-mirror"] .btn{display: inline-flex; align-items: center; gap: 6px; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 500;}
+.csx[data-k="agent-mirror"] .btn-primary{background: var(--accent); color: var(--bg);}
+.csx[data-k="agent-mirror"] .btn-secondary{border: 1px solid var(--line); color: var(--text);}
+.csx[data-k="agent-mirror"] .theme-toggle{font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer;}
+.csx[data-k="agent-mirror"] .flow-svg{width:100%; height:auto; display:block;}
+.csx[data-k="agent-mirror"] .flow-edge{fill:none; stroke:var(--line); stroke-width:1.5;}
+.csx[data-k="agent-mirror"] .flow-node-rect{fill:var(--bg); stroke:var(--line); stroke-width:1;}
+.csx[data-k="agent-mirror"] .flow-node-rect.accent{stroke:var(--accent);}
+.csx[data-k="agent-mirror"] .flow-dot{fill:var(--accent);}
+.csx[data-k="agent-mirror"] .flow-dot.muted{fill:var(--text-faint); opacity:0.6;}
+.csx[data-k="agent-mirror"] .flow-label{font-family:'Figtree', ui-sans-serif, sans-serif; font-size:11.5px; fill:var(--text); font-weight:600;}
+.csx[data-k="agent-mirror"] .flow-arrowhead{fill:var(--text-faint);}
+.csx[data-k="agent-mirror"] .flow-lane-label{font-family:'JetBrains Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em; fill:var(--text-faint);}
+.csx .wrap{padding-left:16px!important;padding-right:16px!important}
+.csx header.wrap,.csx section>.wrap{padding-top:28px!important;padding-bottom:28px!important}
+.csx h1{font-size:34px!important;max-width:none!important}
+.csx h2{font-size:22px!important;max-width:none!important}
+.csx [style*="minmax("]{grid-template-columns:1fr!important}
+.csx .divider-grid{grid-template-columns:1fr 1fr!important}
+.csx .panel{overflow-x:auto;padding:16px!important}
+.csx .flow-svg{min-width:720px}
+.csx .diagram-lane .lane-tag{width:auto}
+.csx pre,.csx code{white-space:pre-wrap;word-break:break-word}
+.csx section>.wrap,.csx header.wrap{display:block}
+.csx{border:0;border-radius:0;max-width:none;margin:0;padding:0}.csx .wrap{max-width:none!important;margin:0!important;padding:0 clamp(24px,5vw,96px)!important}
+</style></head><body>
+<p class="back"><a href="../index.html#work">&larr; Back to Naresh Valavala</a></p>
+<div class="csx" data-k="english-speech-coach">
+
+
+
+<header class="wrap" style="padding: 52px 32px 32px;">
+  
+  <div style="display:flex; gap:8px; flex-wrap:wrap; margin: 20px 0 14px;">
+    <span class="tag tag-accent">Open Source</span>
+    <span class="tag tag-neutral">Speech ML</span>
+    <span class="tag tag-neutral">Local-first</span>
+  </div>
+  <h1 style="font-size: 52px; line-height: 1.05; max-width: 16ch;">English Speech Coach</h1>
+  <p style="font-size: 19px; color: var(--text-muted); max-width: 42ch; margin: 16px 0 28px;">Tells you which sound you got wrong. Runs entirely on your machine.</p>
+  <div class="divider-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px,1fr));">
+    <div><div class="mono" style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint); margin-bottom:3px;">Role</div><div style="font-weight:600; font-size:14px;">Concept · architecture</div></div>
+    <div><div class="mono" style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint); margin-bottom:3px;">Build</div><div style="font-weight:600; font-size:14px;">AI-assisted, directed</div></div>
+    <div><div class="mono" style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint); margin-bottom:3px;">Stack</div><div style="font-weight:600; font-size:14px;">FastAPI · React · SQLite</div></div>
+    <div><div class="mono" style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint); margin-bottom:3px;">Status</div><div style="font-weight:600; font-size:14px;">Built · scorer untuned</div></div>
+    <div><div class="mono" style="font-size:10px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-faint); margin-bottom:3px;">Code</div><div style="font-weight:600; font-size:14px;"><a href="https://github.com/nareshValavala/English_Native" target="_blank" rel="noopener">Repository ↗</a></div></div>
+  </div>
+</header>
+
+<section class="wrap" style="padding: 0 32px 48px;">
+  <div class="panel">
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div class="kicker" style="margin-bottom:16px;">System architecture</div>
+    <svg class="flow-svg" viewBox="0 0 1340 340" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="esc-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path class="flow-arrowhead" d="M0,0 L10,5 L0,10 z" />
+        </marker>
+      </defs>
+      <rect class="flow-boundary" x="10" y="20" width="1320" height="300" rx="14" />
+      <rect class="flow-blabel-bg" x="24" y="6" width="248" height="16" />
+      <text class="flow-caption" x="30" y="18">Local machine, nothing leaves</text>
+
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M165,170 C185,170 185,170 205,170" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M355,170 C375,170 375,95 395,95" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M355,170 C375,170 375,245 395,245" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M545,95 C565,95 565,170 585,170" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M545,245 C565,245 565,170 585,170" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M735,170 C755,170 755,170 775,170" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M925,170 C945,170 945,170 965,170" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M1115,170 C1130,170 1130,110 1145,110" />
+      <path class="flow-edge" marker-end="url(#esc-arrow)" d="M1115,170 C1130,170 1130,230 1145,230" />
+      <path class="flow-edge dashed" marker-end="url(#esc-arrow)" d="M1115,300 C1130,300 1130,230 1145,230" />
+
+      <rect class="flow-node-rect" x="15" y="153" width="150" height="34" rx="8" />
+      <circle class="flow-dot" cx="31" cy="170" r="3" />
+      <text class="flow-label" x="43" y="174">Recording</text>
+
+      <rect class="flow-node-rect" x="205" y="153" width="150" height="34" rx="8" />
+      <circle class="flow-dot" cx="221" cy="170" r="3" />
+      <text class="flow-label" x="233" y="174">faster-whisper</text>
+
+      <rect class="flow-node-rect" x="395" y="78" width="150" height="34" rx="8" />
+      <circle class="flow-dot" cx="411" cy="95" r="3" />
+      <text class="flow-label" x="423" y="99">wav2vec2 → IPA</text>
+
+      <rect class="flow-node-rect" x="395" y="228" width="150" height="34" rx="8" />
+      <circle class="flow-dot muted" cx="411" cy="245" r="3" />
+      <text class="flow-label muted" x="423" y="249">g2p (expected)</text>
+
+      <rect class="flow-node-rect" x="585" y="153" width="150" height="34" rx="8" />
+      <circle class="flow-dot" cx="601" cy="170" r="3" />
+      <text class="flow-label" x="613" y="174">Diff / align</text>
+
+      <rect class="flow-node-rect" x="775" y="153" width="150" height="34" rx="8" />
+      <circle class="flow-dot" cx="791" cy="170" r="3" />
+      <text class="flow-label" x="803" y="174">Praat prosody</text>
+
+      <rect class="flow-node-rect accent" x="965" y="153" width="150" height="34" rx="8" />
+      <circle class="flow-dot" cx="981" cy="170" r="3" />
+      <text class="flow-label" x="993" y="174">Ranked issues</text>
+
+      <rect class="flow-node-rect" x="1145" y="93" width="150" height="34" rx="8" />
+      <circle class="flow-dot muted" cx="1161" cy="110" r="3" />
+      <text class="flow-label" x="1173" y="114">SQLite (history)</text>
+
+      <rect class="flow-node-rect" x="1145" y="213" width="150" height="34" rx="8" />
+      <circle class="flow-dot" cx="1161" cy="230" r="3" />
+      <text class="flow-label" x="1173" y="234">React dashboard</text>
+
+      <rect class="flow-node-rect dashed" x="965" y="283" width="150" height="34" rx="8" />
+      <circle class="flow-dot muted" cx="981" cy="300" r="3" />
+      <text class="flow-label muted" x="993" y="304">Ollama (optional)</text>
+    </svg>
+    <div style="font-size:11px; color:var(--text-faint); margin-top:14px;">System diagram. Components and data flow as implemented in the repo, not a product screenshot.</div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line); background: color-mix(in srgb, var(--accent) 5%, var(--bg));">
+  <div class="wrap" style="padding: 44px 32px; display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:40px; align-items:center;">
+    <div>
+      <div class="kicker" style="margin-bottom:10px;">The mechanism</div>
+      <h2 style="font-size: 28px; max-width: 20ch; margin-bottom: 12px;">Diff two phoneme strings, not one vague opinion</h2>
+      <p style="font-size: 15px; color: var(--text-muted); max-width: 50ch; margin: 0 0 10px;">Expected phonemes come from the prompt text. Produced phonemes come from the audio. Align, diff, and every flagged issue lands on a position in a word.</p>
+      <p style="font-size: 13.5px; color: var(--text-faint); max-width: 50ch; margin: 0;">A multimodal model asked "how did that sound" returns fluent prose you can't verify and can't locate. This is inspectable when it's wrong.</p>
+    </div>
+    <div class="panel">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <div style="display:flex; align-items:baseline; gap:8px; margin-bottom:8px;">
+        <span style="font-weight:600;">brother</span>
+        <span style="flex:1; height:1px; background:var(--line);"></span>
+        <span class="mono" style="font-size:10px; text-transform:uppercase; color:var(--accent);">TH → D</span>
+      </div>
+      <div style="display:flex; gap:5px; align-items:center; margin-bottom:5px;">
+        <span class="mono" style="font-size:9px; text-transform:uppercase; color:var(--text-faint); width:58px;">Expected</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">b</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">r</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">ʌ</span>
+        <span style="border:1px solid var(--accent); background: color-mix(in srgb, var(--accent) 15%, transparent); padding:2px 7px; font-size:13px; border-radius:4px; color:var(--accent);">ð</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">ə</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">r</span>
+      </div>
+      <div style="display:flex; gap:5px; align-items:center;">
+        <span class="mono" style="font-size:9px; text-transform:uppercase; color:var(--text-faint); width:58px;">You said</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">b</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">r</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">ʌ</span>
+        <span style="border:1px solid var(--accent); background: var(--accent); color: var(--bg); padding:2px 7px; font-size:13px; border-radius:4px; font-weight:600;">d</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">ə</span>
+        <span style="border:1px solid var(--line); padding:2px 7px; font-size:13px; border-radius:4px;">r</span>
+      </div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap; padding-top:14px; margin-top:14px; border-top:1px solid var(--line);">
+        <span class="tag tag-outline">W / V</span>
+        <span class="tag tag-outline">TH substitution</span>
+        <span class="tag tag-outline">American R</span>
+        <span class="tag tag-outline">T-flap</span>
+        <span class="tag tag-outline">Vowel quality</span>
+      </div>
+      <div style="font-size:11px; color:var(--text-faint); margin-top:12px;">Illustrative rendering of the comparison the scorer performs, not a captured result.</div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line);">
+  <div class="wrap" style="padding: 40px 32px;">
+    <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;">
+      <span class="kicker">Pipeline</span>
+      <span style="flex:1; height:1px; background:var(--line);"></span>
+      <span class="mono" style="font-size:11px; text-transform:uppercase; color:var(--text-faint);">Two passes, measured separately</span>
+    </div>
+    <div class="divider-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px,1fr));">
+      <div><div class="mono" style="font-size:20px; color:var(--accent); opacity:0.7;">01</div><div style="font-weight:600; margin:4px 0 3px;">Record → WAV</div><p style="font-size:12px; color:var(--text-faint); margin:0;">Prompt, custom text, or free talk. Fires on stop.</p></div>
+      <div><div class="mono" style="font-size:20px; color:var(--accent); opacity:0.7;">02</div><div style="font-weight:600; margin:4px 0 3px;">faster-whisper</div><p style="font-size:12px; color:var(--text-faint); margin:0;">Words + timestamps. The index everything aligns to.</p></div>
+      <div><div class="mono" style="font-size:20px; color:var(--accent); opacity:0.7;">03</div><div style="font-weight:600; margin:4px 0 3px;">wav2vec2 → IPA</div><p style="font-size:12px; color:var(--text-faint); margin:0;">Produced phonemes, diffed against g2p expectations.</p></div>
+      <div><div class="mono" style="font-size:20px; color:var(--accent); opacity:0.7;">04</div><div style="font-weight:600; margin:4px 0 3px;">Praat prosody</div><p style="font-size:12px; color:var(--text-faint); margin:0;">nPVI rhythm, rate, pause ratio, pitch variation.</p></div>
+      <div><div class="mono" style="font-size:20px; color:var(--accent); opacity:0.7;">05</div><div style="font-weight:600; margin:4px 0 3px;">Ranked issues</div><p style="font-size:12px; color:var(--text-faint); margin:0;">Per word, plus passage-level rhythm flags.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line);">
+  <div class="wrap" style="padding: 40px 32px;">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap:24px;">
+      <div>
+        <div class="panel" style="aspect-ratio:4/3; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:12px; padding:20px;">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="mono" style="font-size:11px; color:var(--text-faint);">brother</div>
+          <div style="display:flex; gap:4px;">
+            <span class="diagram-box" style="padding:5px 8px; font-size:12px;">b</span>
+            <span class="diagram-box" style="padding:5px 8px; font-size:12px;">r</span>
+            <span class="diagram-box" style="padding:5px 8px; font-size:12px;">ʌ</span>
+            <span class="diagram-box accent" style="padding:5px 8px; font-size:12px;">ð</span>
+            <span class="diagram-box" style="padding:5px 8px; font-size:12px;">ə</span>
+            <span class="diagram-box" style="padding:5px 8px; font-size:12px;">r</span>
+          </div>
+          <div style="color:var(--text-faint); font-size:13px;">↓ isolate</div>
+          <span class="diagram-box accent" style="font-size:12px;">▶ ð, clipped audio</span>
+          <div style="font-size:10.5px; color:var(--text-faint); margin-top:2px;">Illustrative, not a captured screenshot.</div>
+        </div>
+        <h3 style="font-size:16px; margin:14px 0 5px;">Clipping a bare consonant</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin:0;">No TTS engine can say a lone consonant. The phoneme recognizer built for scoring is reused to find that sound inside a real word and cut it out.</p>
+      </div>
+      <div>
+        <div class="panel" style="aspect-ratio:4/3; display:flex; flex-direction:column; justify-content:center; gap:18px; padding:20px;">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div>
+            <div class="mono" style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-faint); margin-bottom:7px;">▶ correct (synthesized)</div>
+            <div class="waveform">
+              <span class="wbar" style="height:6px;"></span><span class="wbar" style="height:10px;"></span><span class="wbar" style="height:14px;"></span><span class="wbar" style="height:18px;"></span><span class="wbar" style="height:22px;"></span><span class="wbar" style="height:24px;"></span><span class="wbar" style="height:22px;"></span><span class="wbar" style="height:18px;"></span><span class="wbar" style="height:14px;"></span><span class="wbar" style="height:10px;"></span><span class="wbar" style="height:6px;"></span><span class="wbar" style="height:8px;"></span><span class="wbar" style="height:12px;"></span><span class="wbar" style="height:16px;"></span><span class="wbar" style="height:20px;"></span><span class="wbar" style="height:24px;"></span><span class="wbar" style="height:20px;"></span><span class="wbar" style="height:16px;"></span><span class="wbar" style="height:12px;"></span><span class="wbar" style="height:8px;"></span><span class="wbar" style="height:10px;"></span><span class="wbar" style="height:14px;"></span><span class="wbar" style="height:18px;"></span><span class="wbar" style="height:14px;"></span>
+            </div>
+          </div>
+          <div>
+            <div class="mono" style="font-size:10px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-faint); margin-bottom:7px;">▶ yours (clipped)</div>
+            <div class="waveform">
+              <span class="wbar" style="height:4px;"></span><span class="wbar" style="height:16px;"></span><span class="wbar" style="height:8px;"></span><span class="wbar" style="height:20px;"></span><span class="wbar" style="height:6px;"></span><span class="wbar" style="height:24px;"></span><span class="wbar" style="height:10px;"></span><span class="wbar" style="height:18px;"></span><span class="wbar" style="height:4px;"></span><span class="wbar" style="height:22px;"></span><span class="wbar" style="height:12px;"></span><span class="wbar" style="height:8px;"></span><span class="wbar" style="height:26px;"></span><span class="wbar" style="height:6px;"></span><span class="wbar" style="height:14px;"></span><span class="wbar" style="height:20px;"></span><span class="wbar" style="height:4px;"></span><span class="wbar" style="height:18px;"></span><span class="wbar" style="height:10px;"></span><span class="wbar" style="height:24px;"></span><span class="wbar" style="height:8px;"></span><span class="wbar" style="height:16px;"></span><span class="wbar" style="height:6px;"></span><span class="wbar" style="height:12px;"></span>
+            </div>
+          </div>
+          <div style="font-size:10.5px; color:var(--text-faint);">Illustrative, not a captured screenshot.</div>
+        </div>
+        <h3 style="font-size:16px; margin:14px 0 5px;">Yours against correct</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin:0;">Every flagged word plays two ways: synthesized correct, and your own recording clipped to that word. Two synthesized versions would prove nothing.</p>
+      </div>
+      <div>
+        <div class="panel" style="aspect-ratio:4/3; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px;">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="bars">
+            <div class="bar" style="height:20px;"></div>
+            <div class="bar" style="height:28px;"></div>
+            <div class="bar" style="height:24px;"></div>
+            <div class="bar" style="height:38px;"></div>
+            <div class="bar" style="height:52px;"></div>
+          </div>
+          <div style="display:flex; gap:6px; margin-top:8px;">
+            <span class="mono" style="font-size:9px; color:var(--text-faint); width:16px; text-align:center;">W1</span>
+            <span class="mono" style="font-size:9px; color:var(--text-faint); width:16px; text-align:center;">W2</span>
+            <span class="mono" style="font-size:9px; color:var(--text-faint); width:16px; text-align:center;">W3</span>
+            <span class="mono" style="font-size:9px; color:var(--text-faint); width:16px; text-align:center;">W4</span>
+            <span class="mono" style="font-size:9px; color:var(--text-faint); width:16px; text-align:center;">W5</span>
+          </div>
+          <div style="font-size:10.5px; color:var(--text-faint); margin-top:12px;">Illustrative trend, not a captured screenshot.</div>
+        </div>
+        <h3 style="font-size:16px; margin:14px 0 5px;">Profile after 20 recordings</h3>
+        <p style="font-size:13px; color:var(--text-muted); margin:0;">Recurring problem words built from full history. Storage auto-prunes to the most recent 20. Retention is a decision, not an oversight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line); background: var(--text); color: var(--bg);">
+  <div class="wrap" style="padding: 44px 32px;">
+    <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:8px;">
+      <span class="mono" style="font-size:11px; text-transform:uppercase; letter-spacing:0.16em; color: color-mix(in srgb, var(--accent) 70%, var(--bg));">Decisions</span>
+      <span style="flex:1; height:1px; background: color-mix(in srgb, var(--bg) 22%, transparent);"></span>
+      <span class="mono" style="font-size:11px; text-transform:uppercase; color: color-mix(in srgb, var(--bg) 55%, transparent);">Chosen / rejected</span>
+    </div>
+    <p style="font-size:14px; max-width:56ch; margin:0 0 26px; color: color-mix(in srgb, var(--bg) 80%, transparent);">Built as a personal tool, not a product. Privacy and cost win whenever they conflict with polish.</p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 14px;">
+      <div style="border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); border-radius: 10px; padding: 18px 20px;">
+        <div style="font-weight:700; font-size:17px; margin-bottom:6px;">Everything local</div>
+        <p style="font-size:12.5px; margin:0 0 8px; color: color-mix(in srgb, var(--bg) 82%, transparent);">No cloud APIs, no accounts, nothing leaves the machine. Costs a 1.2GB first-run download.</p>
+        <div style="font-size:11px; color: color-mix(in srgb, var(--bg) 52%, transparent);">Rejected: cloud speech APIs. Per-minute billing kills daily practice.</div>
+      </div>
+      <div style="border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); border-radius: 10px; padding: 18px 20px;">
+        <div style="font-weight:700; font-size:17px; margin-bottom:6px;">Phoneme diffing</div>
+        <p style="font-size:12.5px; margin:0 0 8px; color: color-mix(in srgb, var(--bg) 82%, transparent);">Every issue traceable to a position, and inspectable when the scorer is wrong.</p>
+        <div style="font-size:11px; color: color-mix(in srgb, var(--bg) 52%, transparent);">Rejected: a model describing the audio. Unverifiable, can't locate anything.</div>
+      </div>
+      <div style="border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); border-radius: 10px; padding: 18px 20px;">
+        <div style="font-weight:700; font-size:17px; margin-bottom:6px;">LLM optional, and last</div>
+        <p style="font-size:12.5px; margin:0 0 8px; color: color-mix(in srgb, var(--bg) 82%, transparent);">Ollama rephrases feedback if present. Templates are the guaranteed baseline.</p>
+        <div style="font-size:11px; color: color-mix(in srgb, var(--bg) 52%, transparent);">Rejected: an LLM in the scoring path. Measurement isn't a wording problem.</div>
+      </div>
+      <div style="border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); border-radius: 10px; padding: 18px 20px;">
+        <div style="font-weight:700; font-size:17px; margin-bottom:6px;">Degrade, don't block</div>
+        <p style="font-size:12.5px; margin:0 0 8px; color: color-mix(in srgb, var(--bg) 82%, transparent);">Piper missing falls back to browser speech. Rhubarb missing just freezes the mouth diagram.</p>
+        <div style="font-size:11px; color: color-mix(in srgb, var(--bg) 52%, transparent);">Rejected: hard binary dependencies. A tool nobody can start is worse.</div>
+      </div>
+      <div style="border: 1px solid color-mix(in srgb, var(--bg) 18%, transparent); border-radius: 10px; padding: 18px 20px;">
+        <div style="font-weight:700; font-size:17px; margin-bottom:6px;">Subprocess, never import</div>
+        <p style="font-size:12.5px; margin:0 0 8px; color: color-mix(in srgb, var(--bg) 82%, transparent);">Keeps third-party licenses independent of this repo's MIT. Piper's archived MIT release kept over the maintained GPL fork.</p>
+        <div style="font-size:11px; color: color-mix(in srgb, var(--bg) 52%, transparent);">Rejected: the convenient import. It would pull copyleft into an MIT repo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid var(--line);">
+  <div class="wrap" style="padding: 40px 32px 64px; display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:36px; align-items:start;">
+    <div>
+      <div class="kicker" style="margin-bottom:12px;">Where it stands</div>
+      <div style="display:flex; flex-direction:column; gap:9px;">
+        <div style="display:flex; gap:10px; align-items:baseline; padding-bottom:8px; border-bottom:1px solid var(--line);"><span class="tag tag-accent" style="min-width:70px; text-align:center;">Built</span><span style="font-size:13px;">Capture, analysis, practice, progress, lessons, profile, phoneme isolation, visemes.</span></div>
+        <div style="display:flex; gap:10px; align-items:baseline; padding-bottom:8px; border-bottom:1px solid var(--line);"><span class="tag tag-outline" style="min-width:70px; text-align:center;">Untuned</span><span style="font-size:13px;">Substitution rules and prosody ranges, reasoned but not fitted to a real sample.</span></div>
+        <div style="display:flex; gap:10px; align-items:baseline;"><span class="tag tag-neutral" style="min-width:70px; text-align:center;">Deferred</span><span style="font-size:13px;">Shadowing overlay, minimal pairs, IPA breakdown, video analysis.</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <h3 style="font-size:20px; margin-bottom:10px;">The honest limit</h3>
+      <p style="font-size:14px; color:var(--text-muted); margin:0 0 18px;">The pipeline measures what it claims to. The thresholds between "fine" and "flag this" are reasoned, not fitted. Next step is a batch of real recordings to tune against.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="https://github.com/nareshValavala/English_Native" target="_blank" rel="noopener" class="btn btn-primary">Read the code ↗</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+<p class="back" style="padding-bottom:40px"><a href="../index.html#work">&larr; Back to Naresh Valavala</a></p>
+</body></html>
