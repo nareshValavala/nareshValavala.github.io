@@ -1,0 +1,43 @@
+/* Editorial skin for case studies: matches the main portfolio */
+:root{--ink:#14120f}
+html{background:#f4f1ea;scroll-behavior:smooth}
+body{margin:0;background:#f4f1ea;color:#14120f;font-family:Inter,system-ui,sans-serif}
+.csx{--bg:#f4f1ea;--surface:#fffdf7;--line:#d8d2c4;--text:#14120f;--text-muted:#5f5a50;--text-faint:#8d8678;--accent:#17874a;background:#f4f1ea;border:0;border-radius:0;overflow:visible;padding-top:64px}
+.csx[data-k]{font-family:Inter,system-ui,sans-serif;background:#f4f1ea}
+.csx[data-k] h1,.csx[data-k] h2,.csx[data-k] h3{font-family:Fraunces,Georgia,serif;font-weight:400;letter-spacing:-.02em}
+.csx[data-k] h1{font-weight:300;letter-spacing:-.035em}
+.csx[data-k] .flow-label,.csx[data-k] .diagram-box{font-family:Inter,system-ui,sans-serif}
+.csx[data-k] .corner{display:none}
+.csx[data-k] .panel{background:#fffdf7;box-shadow:0 18px 50px -30px rgba(40,30,10,.35)}
+.csx[data-k] .divider-grid>div{background:#f4f1ea}
+.csx[data-k] .btn-primary{background:#14120f;color:#f4f1ea}
+.csx[data-k] .tag-accent{background:rgba(23,135,74,.12);color:#17874a}
+.csx[data-k] .tag-neutral{background:rgba(20,18,15,.06)}
+.csx[data-k] section[style*="color-mix"]{background:#efe8d8!important}
+.csx[data-k] .flow-node-rect{fill:#fffdf7}
+.csx[data-k] .flow-boundary{stroke:#bdb6a6}
+/* nav */
+.cnav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:16px clamp(20px,4vw,48px);background:rgba(244,241,234,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font:500 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+.cnav a{color:#14120f;text-decoration:none}.cnav a.cb{font:500 15px Inter,sans-serif;letter-spacing:.02em;text-transform:none}.cnav a:hover{color:#17874a}
+.cprog{position:fixed;top:0;left:0;right:0;height:2px;background:#17874a;transform-origin:0 50%;transform:scaleX(0);z-index:40;pointer-events:none}
+/* footer */
+.cfoot{max-width:1080px;margin:0 auto;padding:40px 32px 90px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid #d8d2c4;font:500 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+.cfoot a{color:#14120f;text-decoration:none;border-bottom:1px solid #d8d2c4;padding-bottom:3px}.cfoot a:hover{color:#17874a;border-color:#17874a}
+/* motion */
+.cr{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}.cr.in{opacity:1;transform:none}
+.csx .flow-edge{stroke-dasharray:5 6;animation:cdash 1.4s linear infinite}
+.csx .flow-edge.dashed{stroke-dasharray:4 5;animation:none}
+@keyframes cdash{to{stroke-dashoffset:-22}}
+.csx .flow-node-rect{transition:fill .5s ease,stroke .5s ease,stroke-width .5s ease}
+.csx .flow-node-rect.lit{fill:rgba(23,135,74,.14);stroke:#17874a;stroke-width:1.8}
+.csx .pkt{fill:#17874a;filter:drop-shadow(0 0 3px rgba(23,135,74,.7))}
+.csx .bars .bar{transform-origin:50% 100%;animation:cbar 1.8s ease-in-out infinite;animation-delay:calc(var(--i,0)*110ms)}
+.csx .waveform .wbar{transform-origin:50% 50%;animation:cwave 1.3s ease-in-out infinite;animation-delay:calc(var(--i,0)*55ms)}
+@keyframes cbar{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+@keyframes cwave{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1.15)}}
+.cnote{font:400 11px 'JetBrains Mono',ui-monospace,monospace;color:#8d8678;margin-top:8px;letter-spacing:.02em}
+@media(prefers-reduced-motion:reduce){.cr{opacity:1;transform:none;transition:none}.csx .flow-edge,.csx .bars .bar,.csx .waveform .wbar{animation:none}.cprog{display:none}}
+@media(max-width:700px){.cnav a.cb{font-size:14px}.cnav a.bk{font-size:11px}.csx{padding-top:58px}.cfoot{padding:32px 22px 80px}}
+.csx[data-k] .divider-grid{display:flex!important;flex-wrap:wrap;gap:0;background:none;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:0}
+.csx[data-k] .divider-grid>div{flex:1 1 190px;background:none;padding:16px 22px 16px 0}
+.csx[data-k] .panel{overflow-x:auto}
