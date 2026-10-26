@@ -142,7 +142,7 @@ ul.bl li .ic{grid-area:ic;padding:0;font:inherit}ul.bl li .ic img{width:40px;hei
 ul.bl li b{grid-area:n;font:400 18px/1.2 var(--serif)}ul.bl li i{grid-area:s;margin:0}ul.bl li .d{grid-area:d;font-size:12.5px;line-height:1.35;color:#5a5448;padding-top:3px}
 @media(max-width:860px){.amo{grid-template-columns:72px 1fr!important}.amo img{width:72px;height:72px}.amo .go{grid-column:1/-1;text-align:center}ul.bl{grid-template-columns:1fr!important}
 nav{padding:12px 20px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}nav.m{background:var(--navbg,rgba(244,241,234,.86))}nav.on-dark{background:rgba(4,7,4,.82)}nav b{font-size:12.5px!important}
-.M .row{grid-template-columns:1fr}.M .ph{display:none}.fixed{grid-template-columns:1fr 1fr}.ba{grid-template-columns:1fr;gap:14px}.ex,.sk,.two,ul.l li{grid-template-columns:1fr;gap:6px}.two{gap:34px}nav a{display:none}}
+.M .row{grid-template-columns:1fr}.fixed{grid-template-columns:1fr 1fr}.ba{grid-template-columns:1fr;gap:14px}.ex,.sk,.two,ul.l li{grid-template-columns:1fr;gap:6px}.two{gap:34px}nav a{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.L .cur,.hint,.end .cur{animation:none}}
 
 
@@ -176,7 +176,11 @@ nav.sd,nav.sd a{color:#eaedf8!important}@media(max-width:860px){nav.sd{backgroun
 @media(min-width:861px){#origin{position:relative;z-index:5;margin-top:-20vh;padding-top:60px}}
 .hdr{position:absolute;top:clamp(86px,15vh,150px);left:0;right:0;text-align:center;font:500 clamp(24px,5.4vw,76px)/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase}.hdr .cur{display:inline-block;width:.55em;height:1em;background:var(--gl);vertical-align:-.1em;margin-left:.1em;animation:bl 1s steps(1) infinite}
 .phw{position:relative;width:180px;height:180px;flex:none}.phw .ph{display:block}.phd{position:absolute;inset:0;width:180px;height:180px;border-radius:50%;pointer-events:none}
-@media(max-width:860px){.phw{display:none}}
+@media(max-width:860px){.M .row{display:flex;flex-direction:column;align-items:flex-start}.phw{order:-1;width:112px;height:112px;margin:8px 0 20px}.phw .ph{width:112px;height:112px}.phd{width:112px;height:112px}}
+nav{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+nav.m{background:var(--navbg,rgba(244,241,234,.9))}
+nav.on-dark{background:rgba(4,7,4,.88)}
+nav.sd{background:rgba(10,15,30,.9)!important}
 </style></head>
 <body>
 <div id="prog"></div>
