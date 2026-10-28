@@ -141,7 +141,7 @@ ul.bl li{grid-template-columns:44px 1fr;grid-template-areas:'ic n' 'ic s' 'ic d'
 ul.bl li .ic{grid-area:ic;padding:0;font:inherit}ul.bl li .ic img{width:40px;height:40px;border-radius:9px;display:block}ul.bl li .ic u{width:40px;height:40px;border-radius:9px;background:#14120f;color:#f4f1ea;font:500 13px var(--mono);display:flex;align-items:center;justify-content:center;text-decoration:none}
 ul.bl li b{grid-area:n;font:400 18px/1.2 var(--serif)}ul.bl li i{grid-area:s;margin:0}ul.bl li .d{grid-area:d;font-size:12.5px;line-height:1.35;color:#5a5448;padding-top:3px}
 @media(max-width:860px){.amo{grid-template-columns:72px 1fr!important}.amo img{width:72px;height:72px}.amo .go{grid-column:1/-1;text-align:center}ul.bl{grid-template-columns:1fr!important}
-nav{padding:12px 20px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}nav.m{background:var(--navbg,rgba(244,241,234,.86))}nav.on-dark{background:rgba(4,7,4,.82)}nav b{font-size:12.5px!important}
+nav{padding:12px 20px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}nav.m{background:var(--navbg,rgba(244,241,234,.86))}nav.on-dark{background:rgba(4,7,4,.82)}nav b{font-size:12.5px!important;cursor:pointer}
 .M .row{grid-template-columns:1fr}.fixed{grid-template-columns:1fr 1fr}.ba{grid-template-columns:1fr;gap:14px}.ex,.sk,.two,ul.l li{grid-template-columns:1fr;gap:6px}.two{gap:34px}nav a{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.L .cur,.hint,.end .cur{animation:none}}
 
@@ -385,6 +385,7 @@ var t0=performance.now(),D=4200,id=++auto;
 if(matchMedia('(pointer:coarse)').matches)hint.textContent='Tap to migrate ↓';
 hint.addEventListener('click',go);
 ['wheel','touchstart','mousedown'].forEach(function(n){addEventListener(n,stopAuto,{passive:true})});
+navb.addEventListener('click',function(){stopAuto();var y=nav.className==='on-dark'?0:mig.offsetTop+(mig.offsetHeight-innerHeight)*.9;scrollTo({top:y,behavior:'smooth'})});
 addEventListener('keydown',function(e){if(e.key!=='Enter'){stopAuto();return}
 var a=document.activeElement,tg=a&&a.tagName;if(tg==='A'||tg==='BUTTON'||tg==='INPUT'||tg==='TEXTAREA'||tg==='SUMMARY'||tg==='SELECT')return;
 if(scrollY<mig.offsetTop+(mig.offsetHeight-innerHeight)*.85){e.preventDefault();go()}});
