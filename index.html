@@ -374,8 +374,8 @@ function upd(){vh=innerHeight;var r=mig.getBoundingClientRect(),tot=mig.offsetHe
  cap.style.top=Math.max(0,y-28)+'px';cap.style.opacity=(e>.01&&e<.998)?1:(e>=.998&&p<1?0:0);
  cap.textContent=e<.998?('Migrating · '+Math.round(e*100)+'%'):'';
  hint.style.opacity=p<.04?.8:0;hint.style.visibility=p<.04?'visible':'hidden';var ks=document.getElementById('ks');if(ks)ks.classList.toggle('on',p>.97);
- var er=endEl.getBoundingClientRect(),dark=(e<.04&&r.top>-vh*.5)||(er.top<60);CHS.forEach(function(c,i){var cr=c.getBoundingClientRect();if(cr.top<40&&cr.bottom>40&&(i===1||i===3||i===5))dark=true});
- nav.className=dark?'on-dark':'m';navb.textContent=dark?'NVALAVALA@CCM':'Naresh Valavala';
+ var er=endEl.getBoundingClientRect(),mf=(e<.04&&r.top>-vh*.5)||(er.top<60),dark=mf;CHS.forEach(function(c,i){var cr=c.getBoundingClientRect();if(cr.top<40&&cr.bottom>40&&(i===1||i===3||i===5))dark=true});
+ nav.className=dark?'on-dark':'m';navb.textContent=mf?'NVALAVALA@CCM':'Naresh Valavala';navb.dataset.mf=mf?1:'';
  chapters()}
 addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
 var auto=0;function stopAuto(){auto=0}
@@ -386,7 +386,7 @@ var t0=performance.now(),D=4200,id=++auto;
 if(matchMedia('(pointer:coarse)').matches)hint.textContent='Tap to migrate ↓';
 hint.addEventListener('click',go);
 ['wheel','touchstart','mousedown'].forEach(function(n){addEventListener(n,stopAuto,{passive:true})});
-navb.addEventListener('click',function(){stopAuto();var y=nav.className==='on-dark'?0:mig.offsetTop+(mig.offsetHeight-innerHeight)*.9;scrollTo({top:y,behavior:'smooth'})});
+navb.addEventListener('click',function(){stopAuto();var y=navb.dataset.mf?0:mig.offsetTop+(mig.offsetHeight-innerHeight)*.9;scrollTo({top:y,behavior:'smooth'})});
 addEventListener('keydown',function(e){if(e.key!=='Enter'){stopAuto();return}
 var a=document.activeElement,tg=a&&a.tagName;if(tg==='A'||tg==='BUTTON'||tg==='INPUT'||tg==='TEXTAREA'||tg==='SUMMARY'||tg==='SELECT')return;
 if(scrollY<mig.offsetTop+(mig.offsetHeight-innerHeight)*.85){e.preventDefault();go()}});
