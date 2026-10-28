@@ -192,6 +192,7 @@ nav.sd{background:rgba(10,15,30,.9)!important}
 @keyframes llin{to{opacity:1}}@media(prefers-reduced-motion:reduce){.ll{opacity:1;animation:none}}
 .M .ml{margin:18px 0 0;font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 .M .ml a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--line)}.M .ml a:hover{color:var(--g);border-color:var(--g)}
+.hint{cursor:pointer;padding:14px 22px;bottom:14px;white-space:nowrap}@media(pointer:coarse){.hint{padding:18px 28px;font-size:12px}}
 </style></head>
 <body>
 <div id="prog"></div>
@@ -208,7 +209,7 @@ nav.sd{background:rgba(10,15,30,.9)!important}
     <p class="ml"><a href="mailto:vnvsnaresh@hotmail.com">Email</a> · <a href="https://www.linkedin.com/in/naga-venkata-valavala/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/nareshValavala" target="_blank" rel="noopener">GitHub</a></p>
   </div><div class="phw" id="phw"><img class="ph" id="phi" src="photo.jpg" alt="Naresh Valavala" width="180" height="180"><canvas class="phd" id="phd" width="360" height="360"></canvas></div></div></div></div>
   <div class="edge" id="edge"></div><div class="cap" id="cap"></div>
-  <div class="hint" id="hint">Scroll to migrate ↓</div>
+  <div class="hint" id="hint">Press Enter ↵ to migrate</div>
 </div></div>
 
 <section id="origin" style="border-top:0"><div class="wrap">
@@ -319,7 +320,7 @@ nav.sd{background:rgba(10,15,30,.9)!important}
 (function(){
 var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 var LINES=[
-" NAME ........ NARESH VALAVALA"," ROLE ........ TECHNICAL LEAD, CCM / OUTPUT SOLUTIONS"," ALSO ........ BUILDING AI PRODUCTS"," EXPERIENCE .. 20+ YEARS, INSURANCE"," PLATFORMS ... OPENTEXT EXSTREAM, SMARTCOMM, RATABASE"," STATUS ...... OPEN TO LEAD AND ARCHITECT ROLES"," APPROACH .... JUDGMENT OVER TOOLING.","","F3=EXIT   F7=BACK   F8=FWD   (SCROLL TO MIGRATE)"];
+" NAME ........ NARESH VALAVALA"," ROLE ........ TECHNICAL LEAD, CCM / OUTPUT SOLUTIONS"," ALSO ........ BUILDING AI PRODUCTS"," EXPERIENCE .. 20+ YEARS, INSURANCE"," PLATFORMS ... OPENTEXT EXSTREAM, SMARTCOMM, RATABASE"," STATUS ...... OPEN TO LEAD AND ARCHITECT ROLES"," APPROACH .... JUDGMENT OVER TOOLING.","","F3=EXIT   F7=BACK   F8=FWD   "+(matchMedia("(pointer:coarse)").matches?"(TAP TO MIGRATE)":"(PRESS ENTER TO MIGRATE)")];
 var T=LINES.join('\n'),term=document.getElementById('term'),n=0;
 var HT='IT ALL STARTED HERE',hdr=document.getElementById('hdr');
 function type(){n=Math.min(T.length,n+3);term.innerHTML=T.slice(0,n).replace(/&/g,'&amp;').replace(/</g,'&lt;')+'<span class="cur"></span>';if(n<T.length)setTimeout(type,18)}
@@ -376,6 +377,17 @@ function upd(){vh=innerHeight;var r=mig.getBoundingClientRect(),tot=mig.offsetHe
  nav.className=dark?'on-dark':'m';navb.textContent=dark?'NVALAVALA@CCM':'Naresh Valavala';
  chapters()}
 addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);upd();
+var auto=0;function stopAuto(){auto=0}
+function go(){if(auto)return;var tot=mig.offsetHeight-innerHeight,y0=scrollY,y1=mig.offsetTop+tot*.9;if(y0>=y1-4)return;
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){scrollTo({top:y1,behavior:'instant'});return}
+var t0=performance.now(),D=4200,id=++auto;
+(function f(t){if(auto!==id)return;var k=Math.min(1,(t-t0)/D),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;scrollTo({top:y0+(y1-y0)*e,behavior:'instant'});if(k<1)requestAnimationFrame(f);else auto=0})(t0)}
+if(matchMedia('(pointer:coarse)').matches)hint.textContent='Tap to migrate ↓';
+hint.addEventListener('click',go);
+['wheel','touchstart','mousedown'].forEach(function(n){addEventListener(n,stopAuto,{passive:true})});
+addEventListener('keydown',function(e){if(e.key!=='Enter'){stopAuto();return}
+var a=document.activeElement,tg=a&&a.tagName;if(tg==='A'||tg==='BUTTON'||tg==='INPUT'||tg==='TEXTAREA'||tg==='SUMMARY'||tg==='SELECT')return;
+if(scrollY<mig.offsetTop+(mig.offsetHeight-innerHeight)*.85){e.preventDefault();go()}});
 
 /* call */
 var SC=[
